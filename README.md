@@ -18,6 +18,4 @@ Clone this repository and install dependencies with `pip`:
 
 ## How to use
 
-Clone this repository and install dependencies with `pip`:
-
-`pip install -r requirements.txt`
+Run `cemu-rpc.py` alongside `Cemu`.
