@@ -8,7 +8,8 @@ Discord Rich Presence for Cemu
 
 ## Installation
 
-> Requires Python
+> Requires Python 3
+
 
 Clone this repository and install dependencies with `pip`:
 
