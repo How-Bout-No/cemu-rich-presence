@@ -4,6 +4,8 @@ import win32gui
 import re
 import sys
 
+gametitle = None
+
 def enumWindowsProc(hwnd, lParam):
     global gametitle
     wintitle = win32gui.GetWindowText(hwnd)
@@ -11,10 +13,13 @@ def enumWindowsProc(hwnd, lParam):
         try:
             gametitle = re.findall(r'\](.*?)\[', wintitle)[2].strip()
         except:
-            print("Cemu is not running!")
-            sys.exit()
-        
+            gametitle = ''
+
 win32gui.EnumWindows(enumWindowsProc, 0)
+
+if gametitle is None:
+    print("Cemu is not running!")
+    sys.exit()
 
 client_id = '473587029498658846'
 RPC = Presence(client_id)
@@ -22,9 +27,15 @@ RPC.connect()
 image_key = 'cemulogo_png'
 starttime = time.time()
 
-print(RPC.update(state=gametitle, details="Now Playing:", start=starttime, large_image=image_key))
-
 while True:
-    win32gui.EnumWindows(enumWindowsProc, 0)
-    RPC.update(state=gametitle, details="Now Playing:", start=starttime, large_image=image_key)
-    time.sleep(500)
+    if gametitle == '':
+        win32gui.EnumWindows(enumWindowsProc, 0)
+        print("No game playing...\nChecking again in 5 seconds...\n\n")
+        time.sleep(5)
+    elif gametitle is None:
+        print("Cemu is not running!")
+        sys.exit()
+    else:
+        win32gui.EnumWindows(enumWindowsProc, 0)
+        RPC.update(state=gametitle, details="Now Playing:", start=starttime, large_image=image_key)
+        time.sleep(500)

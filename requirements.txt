@@ -1,1 +1,2 @@
+win32gui==221.6
 git+git://github.com/qwertyquerty/pypresence@master
