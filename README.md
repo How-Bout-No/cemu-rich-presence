@@ -4,6 +4,8 @@
 
 Discord Rich Presence for Cemu
 
+In light of possible Discord RPC integration in Cemu 1.13.0+, I still went ahead and made a simple Python script to (supposedly) pull of the exact same task. Why? Well, it was easy and simple, and honestly I wasn't aware that RPC was coming out soon. Depending on how the RPC will actually look/feel, this project could very quickly become deprecated (a matter of hours at this point, to be exact) but it was easy to do so no losses? ¯\_(ツ)_/¯
+
 -----------
 
 ## Installation
